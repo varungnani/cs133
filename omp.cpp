@@ -21,6 +21,7 @@ void GemmParallel(const float a[kI][kK], const float b[kK][kJ],
   int i;
   int j;
   int k;
+  
   #pragma omp parallel for shared(a,b,c) private(i,j,k) schedule(guided)
   for (i = 0; i < kI; ++i) {
     for (j = 0; j < kJ; ++j) {
