@@ -2,7 +2,7 @@
 #include "lib/gemm.h"
 #include <cmath>
 #include <cstring>
-
+#include "omp.h"
 #include <chrono>
 #include <iostream>
 #include <random>
@@ -19,7 +19,7 @@ void GemmParallel(const float a[kI][kK], const float b[kK][kJ],
   }
   //transpose matrix
 
-  float[kK][kJ] b_trans;
+  float b_trans[kK][kJ];
   for (int i = 0; i < kK; i++) {
       for (int j = 0; j < kJ; j++) {
           b_trans[i][j] = b[j][i];
