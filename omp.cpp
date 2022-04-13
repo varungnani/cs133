@@ -17,6 +17,7 @@ void GemmParallel(const float a[kI][kK], const float b[kK][kJ],
   for (int i = 0; i < kI; ++i) {
     std::memset(c[i], 0, sizeof(float) * kJ);
   }
+  #pragma omp parallel for shared(A,B,C) private(i,j,k) schedule(guided)
   for (int i = 0; i < kI; ++i) {
     for (int j = 0; j < kJ; ++j) {
       for (int k = 0; k < kK; ++k) {
